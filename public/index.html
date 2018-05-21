@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>frontend</title>
+  <link rel="stylesheet" type="text/css" href="./stylesheet.css">
+</head>
+
+<body>
+  <header>
+    <div id="navbar" class="container">
+      <a href="#">
+        <img src="./ramzes_logo-01.svg" id="logo" alt="Logo Ramzes">
+        <p id="ramzes">
+          <strong>Ramzes</strong>.io</p>
+      </a>
+      <nav>
+        <a href="#">
+          <strong>Explore</strong> ICOs</a>
+        <a href="#">
+          <strong>Submit</strong> ICOs</a>
+        <a href="#">
+          <strong>Token</strong> Market</a>
+      </nav>
+    </div>
+  </header>
+  <section id="transaction_board">
+    <div class="container">
+      <p id="transaction_message" style="display: none">Your transaction has been successful! You have bought
+        <span id="token_bought" style="font-weight: 600">1 FICC</span> for
+        <span id="fiat_paid" style="font-weight: 600">300 PLN</span>. Waiting for balance update...</p>
+      <div id="ico_list_container">
+        <p id="ico_list_heading">ICO list</p>
+        <ul id="ico_list">
+          <li>
+            <img src="http://via.placeholder.com/66x66">
+            <div>
+              <p class="ico_name">FAJNE ICO COMPANY</p>
+              <p>
+                <strong>PLN: </strong>300</p>
+              <p>
+                <strong>Tokens left: </strong>821</p>
+            </div>
+          </li>
+          <li>
+            <img src="http://via.placeholder.com/66x66">
+            <div>
+              <p class="ico_name">FAJNE ICO COMPANY</p>
+              <p>
+                <strong>PLN: </strong>300</p>
+              <p>
+                <strong>Tokens left: </strong>821</p>
+            </div>
+          </li>
+          <li>
+            <img src="http://via.placeholder.com/66x66">
+            <div>
+              <p class="ico_name">FAJNE ICO COMPANY</p>
+              <p>
+                <strong>PLN: </strong>300</p>
+              <p>
+                <strong>Tokens left: </strong>821</p>
+            </div>
+          </li>
+          <li>
+            <img src="http://via.placeholder.com/66x66">
+            <div>
+              <p class="ico_name">FAJNE ICO COMPANY</p>
+              <p>
+                <strong>PLN: </strong>300</p>
+              <p>
+                <strong>Tokens left: </strong>821</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div id="transaction_menu">
+        <p>Enter your Ethereum wallet address:</p>
+        <input type="text" onClick="this.setSelectionRange(0, this.value.length)" name="eth_wallet" value="wallet address">
+        <p>Please input:</p>
+        <div id="dupa">
+          <p>PLN to spend</p>
+          <div>
+            <p id="fiat_name">PLN:</p>
+            <input type="text" onClick="this.setSelectionRange(0, this.value.length)" name="fiat_amount" value="300" disabled>
+          </div>
+        </div>
+        <div>
+          <p>or</p>
+        </div>
+        <div id="dupa2">
+          <p>tokens to buy</p>
+          <div>
+            <p id="token_name">FICC:</p>
+            <input type="text" onClick="this.setSelectionRange(0, this.value.length)" name="token_amount" value="1.00">
+            <p id="crypto_in_stock">
+              <strong>max.</strong> 822.00</p>
+          </div>
+        </div>
+        <input id="submit" type="submit" name="confirm_transaction" value="Submit">
+        <p id="security_info">Your payment will be securely processed by a Dotpay third-party.</p>
+      </div>
+    </div>
+    <div id="particles-js"></div>
+  </section>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script type="text/javascript" src="./particlesjs-config.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="./main.js"></script>
+</body>
+
+</html>

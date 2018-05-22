@@ -83,7 +83,7 @@ $(document).ready(() => {
 function selectToken(id, value, supply, symbol) {
   currentTokenPrice = value;
   $.each($('li'), (i, el) => {
-    if (el.id == id) {
+    if (el.id === id) {
       $(el).addClass('current_ICO');
     } else {
       $(el).removeClass('current_ICO');

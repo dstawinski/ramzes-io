@@ -1,27 +1,46 @@
 <template>
   <div id="dashboard">
     <header>
-      <div id="navbar" class="container">
+      <div
+        id="navbar"
+        class="container">
         <a href="#">
-          <img src="../assets/logo.svg" id="logo" alt="Logo Ramzes">
+          <img
+            id="logo"
+            src="../assets/logo.svg"
+            alt="Logo Ramzes">
           <p id="ramzes">
-            <strong>Ramzes</strong>.io</p>
+          <strong>Ramzes</strong>.io</p>
         </a>
         <nav>
           <a href="#">
-            <strong>Explore</strong> ICOs</a>
+          <strong>Explore</strong> ICOs</a>
           <a href="#">
-            <strong>Submit</strong> ICOs</a>
+          <strong>Submit</strong> ICOs</a>
           <a href="#">
-            <strong>Token</strong> Market</a>
+          <strong>Token</strong> Market</a>
         </nav>
       </div>
     </header>
     <section id="transaction_board">
       <div class="container">
-        <p id="transaction_message" style="display: none">Your transaction has been successful! You have bought
-          <span id="token_bought" style="font-weight: 600">1 FICC</span> for
-          <span id="fiat_paid" style="font-weight: 600">300 PLN</span>. Waiting for balance update...</p>
+        <p
+          id="transaction_message"
+          style="display: none">
+          Your transaction has been successful! You have bought
+          <span
+            id="token_bought"
+            style="font-weight: 600">
+            1 FICC
+          </span>
+          for
+          <span
+            id="fiat_paid"
+            style="font-weight: 600">
+            300 PLN
+          </span>
+          . Waiting for balance update...
+        </p>
         <div id="ico_list_container">
           <p id="ico_list_heading">ICO list</p>
           <ul id="ico_list">
@@ -30,9 +49,9 @@
               <div>
                 <p class="ico_name">FAJNE ICO COMPANY</p>
                 <p>
-                  <strong>PLN: </strong>300</p>
+                <strong>PLN: </strong>300</p>
                 <p>
-                  <strong>Tokens left: </strong>821</p>
+                <strong>Tokens left: </strong>821</p>
               </div>
             </li>
             <li>
@@ -40,9 +59,9 @@
               <div>
                 <p class="ico_name">FAJNE ICO COMPANY</p>
                 <p>
-                  <strong>PLN: </strong>300</p>
+                <strong>PLN: </strong>300</p>
                 <p>
-                  <strong>Tokens left: </strong>821</p>
+                <strong>Tokens left: </strong>821</p>
               </div>
             </li>
             <li>
@@ -50,9 +69,9 @@
               <div>
                 <p class="ico_name">FAJNE ICO COMPANY</p>
                 <p>
-                  <strong>PLN: </strong>300</p>
+                <strong>PLN: </strong>300</p>
                 <p>
-                  <strong>Tokens left: </strong>821</p>
+                <strong>Tokens left: </strong>821</p>
               </div>
             </li>
             <li>
@@ -60,22 +79,31 @@
               <div>
                 <p class="ico_name">FAJNE ICO COMPANY</p>
                 <p>
-                  <strong>PLN: </strong>300</p>
+                <strong>PLN: </strong>300</p>
                 <p>
-                  <strong>Tokens left: </strong>821</p>
+                <strong>Tokens left: </strong>821</p>
               </div>
             </li>
           </ul>
         </div>
         <div id="transaction_menu">
           <p>Enter your Ethereum wallet address:</p>
-          <input type="text" onClick="this.setSelectionRange(0, this.value.length)" name="eth_wallet" value="wallet address">
+          <input
+            type="text"
+            onClick="this.setSelectionRange(0, this.value.length)"
+            name="eth_wallet"
+            value="wallet address">
           <p>Please input:</p>
           <div id="dupa">
             <p>PLN to spend</p>
             <div>
               <p id="fiat_name">PLN:</p>
-              <input type="text" onClick="this.setSelectionRange(0, this.value.length)" name="fiat_amount" value="300" disabled>
+              <input
+                type="text"
+                onClick="this.setSelectionRange(0, this.value.length)"
+                name="fiat_amount"
+                value="300"
+                disabled>
             </div>
           </div>
           <div>
@@ -85,22 +113,45 @@
             <p>tokens to buy</p>
             <div>
               <p id="token_name">FICC:</p>
-              <input type="text" onClick="this.setSelectionRange(0, this.value.length)" name="token_amount" value="1.00">
+              <input
+                type="text"
+                onClick="this.setSelectionRange(0, this.value.length)"
+                name="token_amount"
+                value="1.00">
               <p id="crypto_in_stock">
-                <strong>max.</strong> 822.00</p>
+              <strong>max.</strong> 822.00</p>
             </div>
           </div>
-          <input id="submit" type="submit" name="confirm_transaction" value="Submit">
+          <input
+            id="submit"
+            type="submit"
+            name="confirm_transaction"
+            value="Submit">
           <p id="security_info">Your payment will be securely processed by a Dotpay third-party.</p>
         </div>
       </div>
     </section>
-    <vue-particles color="#ffffff" :particleOpacity="0.7" :particlesNumber="150" shapeType="circle" :particleSize="3" linesColor="#dedede" :linesWidth="1" :lineLinked="true" :lineOpacity="0.4" :linesDistance="150" :moveSpeed="3" :hoverEffect="true" hoverMode="grab" :clickEffect="true" clickMode="push">
-    </vue-particles>
+    <vue-particles
+      :particle-opacity="0.7"
+      :particles-number="150"
+      :particle-size="3"
+      :lines-width="1"
+      :line-linked="true"
+      :line-opacity="0.4"
+      :lines-distance="150"
+      :move-speed="3"
+      :hover-effect="true"
+      :click-effect="true"
+      color="#ffffff"
+      shape-type="circle"
+      lines-color="#dedede"
+      hover-mode="grab"
+      click-mode="push"/>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'Dashboard',
   data() {

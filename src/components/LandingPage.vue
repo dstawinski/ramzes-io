@@ -3,7 +3,7 @@
 <h1>Empty Landing Page</h1>
   <router-link to="/dashboard">Dashboard</router-link>
 </div>
-</template> 
+</template>
 
 <script>
 export default {

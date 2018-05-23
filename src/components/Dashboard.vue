@@ -92,7 +92,7 @@
             type="text"
             onClick="this.setSelectionRange(0, this.value.length)"
             name="eth_wallet"
-            value="wallet address">
+            placeholder="wallet address">
           <p>Please input:</p>
           <div id="dupa">
             <p>PLN to spend</p>
@@ -151,9 +151,13 @@
 </template>
 
 <script>
+import IcoPlaceholder from './icoPlaceholder';
 
 export default {
   name: 'Dashboard',
+  components: {
+    IcoPlaceholder,
+  },
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',

@@ -3,6 +3,7 @@
     id="transaction_menu">
     <p>Enter your Ethereum wallet address:</p>
     <input
+      v-model="walletAddress"
       type="text"
       name="eth_wallet"
       placeholder="wallet address">
@@ -12,11 +13,10 @@
       <div>
         <p id="fiat_name">{{ token.currency }}:</p>
         <input
-          :value="token.value"
+          v-model="tokenValue"
           type="text"
-          onClick="this.setSelectionRange(0, this.value.length)"
           name="fiat_amount"
-          disabled>
+          @input="calculateFiatValue">
       </div>
     </div>
     <div>
@@ -27,10 +27,10 @@
       <div>
         <p id="token_name">{{ token.symbol }}:</p>
         <input
+          v-model="fiatValue"
           type="text"
-          onClick="this.setSelectionRange(0, this.value.length)"
           name="token_amount"
-          value="1.00">
+          @input="calculateTokenValue">
         <p id="crypto_in_stock">
         <strong>max.</strong> {{ token.ourSupply }}</p>
       </div>
@@ -39,23 +39,41 @@
       id="submit"
       type="submit"
       name="confirm_transaction"
-      value="Submit">
+      value="Submit"
+      @click="postNewOrder">
     <p id="security_info">Your payment will be securely processed by a Dotpay third-party.</p>
   </div>
 </template>
 
-<script>
 
+<script>
+import axios from 'axios';
 
 export default {
   name: 'TransactionMenu',
   props: {
-    token: { type: Object, default: () => {} },
+    token: { type: Object, required: true },
+  },
+  data() {
+    return {
+      fiatValue: 0,
+      tokenValue: 0,
+      walletAddress: '',
+    };
   },
   methods: {
-    updateToken(index, token) {
-      this.token = token;
-      console.log(this.props);
+    calculateTokenValue() {
+      this.tokenValue = this.fiatValue * this.token.value;
+    },
+    calculateFiatValue() {
+      this.fiatValue = this.tokenValue / this.token.value;
+    },
+    async postNewOrder() {
+      const urlOrder = `http://167.99.141.77:8081/api/order/new/${this.walletAddress}`;
+
+      const response = await axios.post(urlOrder);
+      console.log(response);
+      window.location.href = response.data.href;
     },
   },
 };

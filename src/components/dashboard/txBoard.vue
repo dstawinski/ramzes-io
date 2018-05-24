@@ -6,7 +6,8 @@
         :tokens="tokens"
         @token-change="updateToken"/>
       <TransactionMenu
-        :token="selectedToken"/>
+        :token="selectedToken"
+      />
     </div>
   </section>
 </template>
@@ -28,7 +29,7 @@ export default {
   data() {
     return {
       tokens: [],
-      selectedToken: {},
+      selectedToken: { },
     };
   },
   async created() {

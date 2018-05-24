@@ -6,7 +6,7 @@
         v-for="(token,index) in tokens"
         :key="index"
         :class="{ 'current_ICO': isActive[index] }"
-        @click="makeActive(index)">
+        @click="makeActive(index, token, $event)">
         <img src="http://via.placeholder.com/66x66">
         <div>
           <p class="ico_name">{{ token.token }}</p>
@@ -22,34 +22,30 @@
 
 <script>
 
-
-import axios from 'axios';
-
 export default {
   name: 'IcoListContainer',
+  props: {
+    tokens: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
-      tokens: [],
-      errors: [],
       isActive: [],
     };
   },
-  async created() {
-    // async / await version (created() becomes async created())
-    //
-    try {
-      const response = await axios.get('http://167.99.141.77:8081/api/tokens');
-      this.tokens = response.data;
-      this.isActive = new Array(this.tokens.length);
-      console.log(this.isActive);
-    } catch (e) {
-      this.errors.push(e);
-    }
+
+  created() {
+    this.isActive = new Array(this.tokens.length);
+    this.isActive[0] = true;
   },
+
   methods: {
-    makeActive(index) {
+    makeActive(index, token) {
       this.isActive = new Array(this.tokens.length);
       this.isActive[index] = true;
+      this.$emit('token-change', token);
     },
   },
 };

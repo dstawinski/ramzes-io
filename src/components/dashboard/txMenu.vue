@@ -1,5 +1,6 @@
 <template>
-  <div id="transaction_menu">
+  <div
+    id="transaction_menu">
     <p>Enter your Ethereum wallet address:</p>
     <input
       type="text"
@@ -7,14 +8,14 @@
       placeholder="wallet address">
     <p>Please input:</p>
     <div id="curr1">
-      <p>PLN to spend</p>
+      <p>{{ token.currency }} to spend</p>
       <div>
-        <p id="fiat_name">PLN:</p>
+        <p id="fiat_name">{{ token.currency }}:</p>
         <input
+          :value="token.value"
           type="text"
           onClick="this.setSelectionRange(0, this.value.length)"
           name="fiat_amount"
-          value="300"
           disabled>
       </div>
     </div>
@@ -24,14 +25,14 @@
     <div id="curr2">
       <p>tokens to buy</p>
       <div>
-        <p id="token_name">FICC:</p>
+        <p id="token_name">{{ token.symbol }}:</p>
         <input
           type="text"
           onClick="this.setSelectionRange(0, this.value.length)"
           name="token_amount"
           value="1.00">
         <p id="crypto_in_stock">
-        <strong>max.</strong> 822.00</p>
+        <strong>max.</strong> {{ token.ourSupply }}</p>
       </div>
     </div>
     <input
@@ -44,53 +45,19 @@
 </template>
 
 <script>
-// let currentTokenPrice = null;
-
-
-// const getTokensURL = 'http://206.189.48.168:8081/api/getTokens';
-// let tokens = $.ajax({
-//   url: getTokensURL,
-// }).done((res) => {
-//   $('#ico_list').empty();
-//   tokens = JSON.parse(res);
-//   $.each(tokens, (i, val) => {
-//     const newListElem = `
-//             <li id=${val._id}>
-//                 <img src='http://via.placeholder.com/66x66'>
-//                 <div>
-//                 <p class="ico_name">${val.token}</p>
-//                 <p>
-//                     <strong>${val.currency}: </strong>${val.value}</p>
-//                 <p>
-//                     <strong>Tokens left: </strong>${val.ourSupply}</p>
-//                 </div>
-//             </li>`;
-//     $('#ico_list').append(newListElem);
-//     $(`#${val._id}`).click(() => {
-//       selectToken(val._id, val.value, val.ourSupply, val.symbol);
-//     });
-//   });
-//   console.log($('#ico_list').first());
-//   $('li').first().trigger('click');
-// });
-
-// function selectToken(id, value, supply, symbol) {
-//   currentTokenPrice = value;
-//   $.each($('li'), (i, el) => {
-//     if (el.id === id) {
-//       $(el).addClass('current_ICO');
-//     } else {
-//       $(el).removeClass('current_ICO');
-//     }
-//   });
-
-//   $('#token_name').html(symbol);
-//   $('#crypto_in_stock').html(`<strong>max.</strong> ${supply}`);
-// }
 
 
 export default {
   name: 'TransactionMenu',
+  props: {
+    token: { type: Object, default: () => {} },
+  },
+  methods: {
+    updateToken(index, token) {
+      this.token = token;
+      console.log(this.props);
+    },
+  },
 };
 </script>
 

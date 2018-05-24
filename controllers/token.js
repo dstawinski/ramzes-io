@@ -6,6 +6,7 @@ const provider = new Web3.providers.HttpProvider('https://rinkeby.infura.io/zB5b
 const web3 = new Web3(provider);
 const contract = require('truffle-contract');
 const TokenTokenArtifacts = require('../build/contracts/TokenToken.json');
+
 const Token = require('../models/Token');
 
 const contractAddress = process.env.CONTRACT_ADDRESS;
@@ -54,7 +55,6 @@ exports.sendTokensRaw = async (address, value) => {
 };
 
 exports.getBalance = async (address) => {
-
   const TokenToken = await contract(TokenTokenArtifacts);
   TokenToken.setProvider(provider);
   if (typeof TokenToken.currentProvider.sendAsync !== 'function') {
@@ -78,9 +78,8 @@ exports.getBalance = async (address) => {
 
 exports.getTokens = (req, res) => {
   Token.find({}, (err, tokens) => {
-    if (err) {
-    }
-    console.log(tokens)
+    if (err) { console.log(err); }
+    console.log(tokens);
     res.send(tokens);
   });
-}
+};

@@ -6,7 +6,7 @@ const provider = new Web3.providers.HttpProvider('https://rinkeby.infura.io/zB5b
 const web3 = new Web3(provider);
 const contract = require('truffle-contract');
 const TokenTokenArtifacts = require('../build/contracts/TokenToken.json');
-const token = require('../models/Token');
+const Token = require('../models/Token');
 
 const contractAddress = process.env.CONTRACT_ADDRESS;
 const ownerAddress = process.env.OWNER_ADDRESS;
@@ -77,7 +77,7 @@ exports.getBalance = async (address) => {
 };
 
 exports.getTokens = (req, res) => {
-  token.find({}, (err, tokens) => {
+  Token.find({}, (err, tokens) => {
     if (err) {
     }
     console.log(tokens)

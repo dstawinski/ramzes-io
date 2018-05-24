@@ -2,7 +2,8 @@ const Token = require('./models/Token');
 const mongoose = require('mongoose');
 const chalk = require('chalk');
 
-mongoose.connect('mongodb://167.99.141.77:27017/ramzes');
+// mongoose.connect('mongodb://167.99.141.77:27017/ramzes');
+mongoose.connect('mongodb://localhost:27017/ramzes');
 mongoose.connection.on('error', (err) => {
   console.error(err);
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.',
@@ -40,4 +41,9 @@ const Token2 = new Token(token2);
 Token2.save(err => console.log(err));
 const Token3 = new Token(token3);
 Token3.save(err => console.log(err));
+
+Token.find({}, (err, tokens) => {
+  if (err) { console.log(err); }
+  console.log(tokens);
+});
 

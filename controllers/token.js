@@ -79,8 +79,8 @@ exports.getBalance = async (address) => {
 exports.getTokens = (req, res) => {
   token.find({}, (err, tokens) => {
     if (err) {
-      return res.send(err);
     }
-    return res.send(JSON.stringify(tokens));
+    console.log(tokens)
+    res.send(tokens);
   });
 }

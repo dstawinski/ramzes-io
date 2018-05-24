@@ -4,7 +4,9 @@
     <ul id="ico_list">
       <li
         v-for="(token,index) in tokens"
-        :key="index">
+        :key="index"
+        :class="{ 'current_ICO': isActive[index] }"
+        @click="makeActive(index)">
         <img src="http://via.placeholder.com/66x66">
         <div>
           <p class="ico_name">{{ token.token }}</p>
@@ -20,49 +22,6 @@
 
 <script>
 
-// let currentTokenPrice = null;
-
-
-// const getTokensURL = 'http://206.189.48.168:8081/api/getTokens';
-// let tokens = $.ajax({
-//   url: getTokensURL,
-// }).done((res) => {
-//   $('#ico_list').empty();
-//   tokens = JSON.parse(res);
-//   $.each(tokens, (i, val) => {
-//     const newListElem = `
-//             <li id=${val._id}>
-//                 <img src='http://via.placeholder.com/66x66'>
-//                 <div>
-//                 <p class="ico_name">${val.token}</p>
-//                 <p>
-//                     <strong>${val.currency}: </strong>${val.value}</p>
-//                 <p>
-//                     <strong>Tokens left: </strong>${val.ourSupply}</p>
-//                 </div>
-//             </li>`;
-//     $('#ico_list').append(newListElem);
-//     $(`#${val._id}`).click(() => {
-//       selectToken(val._id, val.value, val.ourSupply, val.symbol);
-//     });
-//   });
-//   console.log($('#ico_list').first());
-//   $('li').first().trigger('click');
-// });
-
-// function selectToken(id, value, supply, symbol) {
-//   currentTokenPrice = value;
-//   $.each($('li'), (i, el) => {
-//     if (el.id === id) {
-//       $(el).addClass('current_ICO');
-//     } else {
-//       $(el).removeClass('current_ICO');
-//     }
-//   });
-
-//   $('#token_name').html(symbol);
-//   $('#crypto_in_stock').html(`<strong>max.</strong> ${supply}`);
-// }
 
 import axios from 'axios';
 
@@ -72,7 +31,7 @@ export default {
     return {
       tokens: [],
       errors: [],
-
+      isActive: [],
     };
   },
   async created() {
@@ -80,11 +39,18 @@ export default {
     //
     try {
       const response = await axios.get('http://167.99.141.77:8081/api/tokens');
-      console.log(response);
       this.tokens = response.data;
+      this.isActive = new Array(this.tokens.length);
+      console.log(this.isActive);
     } catch (e) {
       this.errors.push(e);
     }
+  },
+  methods: {
+    makeActive(index) {
+      this.isActive = new Array(this.tokens.length);
+      this.isActive[index] = true;
+    },
   },
 };
 </script>

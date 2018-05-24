@@ -6,7 +6,7 @@
       name="eth_wallet"
       placeholder="wallet address">
     <p>Please input:</p>
-    <div id="dupa">
+    <div id="curr1">
       <p>PLN to spend</p>
       <div>
         <p id="fiat_name">PLN:</p>
@@ -21,7 +21,7 @@
     <div>
       <p>or</p>
     </div>
-    <div id="dupa2">
+    <div id="curr2">
       <p>tokens to buy</p>
       <div>
         <p id="token_name">FICC:</p>
@@ -44,6 +44,51 @@
 </template>
 
 <script>
+// let currentTokenPrice = null;
+
+
+// const getTokensURL = 'http://206.189.48.168:8081/api/getTokens';
+// let tokens = $.ajax({
+//   url: getTokensURL,
+// }).done((res) => {
+//   $('#ico_list').empty();
+//   tokens = JSON.parse(res);
+//   $.each(tokens, (i, val) => {
+//     const newListElem = `
+//             <li id=${val._id}>
+//                 <img src='http://via.placeholder.com/66x66'>
+//                 <div>
+//                 <p class="ico_name">${val.token}</p>
+//                 <p>
+//                     <strong>${val.currency}: </strong>${val.value}</p>
+//                 <p>
+//                     <strong>Tokens left: </strong>${val.ourSupply}</p>
+//                 </div>
+//             </li>`;
+//     $('#ico_list').append(newListElem);
+//     $(`#${val._id}`).click(() => {
+//       selectToken(val._id, val.value, val.ourSupply, val.symbol);
+//     });
+//   });
+//   console.log($('#ico_list').first());
+//   $('li').first().trigger('click');
+// });
+
+// function selectToken(id, value, supply, symbol) {
+//   currentTokenPrice = value;
+//   $.each($('li'), (i, el) => {
+//     if (el.id === id) {
+//       $(el).addClass('current_ICO');
+//     } else {
+//       $(el).removeClass('current_ICO');
+//     }
+//   });
+
+//   $('#token_name').html(symbol);
+//   $('#crypto_in_stock').html(`<strong>max.</strong> ${supply}`);
+// }
+
+
 export default {
   name: 'TransactionMenu',
 };
@@ -114,10 +159,10 @@ export default {
 #transaction_menu > div > div > input:focus {
   color: white;
 }
-#transaction_menu #dupa {
+#transaction_menu #curr1 {
   margin-left: 157px;
 }
-#transaction_menu #dupa2 {
+#transaction_menu #curr2 {
   margin-right: 157px;
 }
 #transaction_menu input[name="confirm_transaction"] {

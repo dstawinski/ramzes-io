@@ -151,13 +151,10 @@
 </template>
 
 <script>
-import IcoPlaceholder from './icoPlaceholder';
 
 export default {
   name: 'Dashboard',
-  components: {
-    IcoPlaceholder,
-  },
+
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',

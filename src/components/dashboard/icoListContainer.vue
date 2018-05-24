@@ -2,44 +2,16 @@
   <div id="ico_list_container">
     <p id="ico_list_heading">ICO list</p>
     <ul id="ico_list">
-      <li>
+      <li
+        v-for="(token,index) in tokens"
+        :key="index">
         <img src="http://via.placeholder.com/66x66">
         <div>
-          <p class="ico_name">FAJNE ICO COMPANY</p>
+          <p class="ico_name">{{ token.token }}</p>
           <p>
-          <strong>PLN: </strong>300</p>
+          <strong>{{ token.currency }}: </strong>{{ token.value }}</p>
           <p>
-          <strong>Tokens left: </strong>821</p>
-        </div>
-      </li>
-      <li>
-        <img src="http://via.placeholder.com/66x66">
-        <div>
-          <p class="ico_name">FAJNE ICO COMPANY</p>
-          <p>
-          <strong>PLN: </strong>300</p>
-          <p>
-          <strong>Tokens left: </strong>821</p>
-        </div>
-      </li>
-      <li>
-        <img src="http://via.placeholder.com/66x66">
-        <div>
-          <p class="ico_name">FAJNE ICO COMPANY</p>
-          <p>
-          <strong>PLN: </strong>300</p>
-          <p>
-          <strong>Tokens left: </strong>821</p>
-        </div>
-      </li>
-      <li>
-        <img src="http://via.placeholder.com/66x66">
-        <div>
-          <p class="ico_name">FAJNE ICO COMPANY</p>
-          <p>
-          <strong>PLN: </strong>300</p>
-          <p>
-          <strong>Tokens left: </strong>821</p>
+          <strong>Tokens left: </strong>{{ token.ourSupply }}</p>
         </div>
       </li>
     </ul>
@@ -47,8 +19,73 @@
 </template>
 
 <script>
+
+// let currentTokenPrice = null;
+
+
+// const getTokensURL = 'http://206.189.48.168:8081/api/getTokens';
+// let tokens = $.ajax({
+//   url: getTokensURL,
+// }).done((res) => {
+//   $('#ico_list').empty();
+//   tokens = JSON.parse(res);
+//   $.each(tokens, (i, val) => {
+//     const newListElem = `
+//             <li id=${val._id}>
+//                 <img src='http://via.placeholder.com/66x66'>
+//                 <div>
+//                 <p class="ico_name">${val.token}</p>
+//                 <p>
+//                     <strong>${val.currency}: </strong>${val.value}</p>
+//                 <p>
+//                     <strong>Tokens left: </strong>${val.ourSupply}</p>
+//                 </div>
+//             </li>`;
+//     $('#ico_list').append(newListElem);
+//     $(`#${val._id}`).click(() => {
+//       selectToken(val._id, val.value, val.ourSupply, val.symbol);
+//     });
+//   });
+//   console.log($('#ico_list').first());
+//   $('li').first().trigger('click');
+// });
+
+// function selectToken(id, value, supply, symbol) {
+//   currentTokenPrice = value;
+//   $.each($('li'), (i, el) => {
+//     if (el.id === id) {
+//       $(el).addClass('current_ICO');
+//     } else {
+//       $(el).removeClass('current_ICO');
+//     }
+//   });
+
+//   $('#token_name').html(symbol);
+//   $('#crypto_in_stock').html(`<strong>max.</strong> ${supply}`);
+// }
+
+import axios from 'axios';
+
 export default {
   name: 'IcoListContainer',
+  data() {
+    return {
+      tokens: [],
+      errors: [],
+
+    };
+  },
+  async created() {
+    // async / await version (created() becomes async created())
+    //
+    try {
+      const response = await axios.get('http://167.99.141.77:8081/api/tokens');
+      console.log(response);
+      this.tokens = response.data;
+    } catch (e) {
+      this.errors.push(e);
+    }
+  },
 };
 </script>
 

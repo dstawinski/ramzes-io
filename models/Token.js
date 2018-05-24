@@ -13,9 +13,6 @@ const tokenSchema = new mongoose.Schema({
   ourSupply: {
     type: Number
   },
-  price: {
-    type: Number
-  },
   currency: {
     type: String, default: 'PLN'
   }
@@ -23,6 +20,6 @@ const tokenSchema = new mongoose.Schema({
   timestamps: true
 });
 
-const Token = mongoose.model('Rate', tokenSchema);
+const Token = mongoose.model('Token', tokenSchema);
 
 module.exports = Token;

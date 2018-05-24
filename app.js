@@ -112,22 +112,18 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
 /**
  * Primary app routes.
  */
-app.get('/', homeController.index);
 
-app.post('/api/order/:walletAddress', orderController.postOrder);
+app.post('/api/order/new/:walletAddress', orderController.postOrder);
+
 app.get('/api/order/:orderID', orderController.getOrder);
 
-app.post('/api/dotpay', apiController.postDotpay);
+app.post('/api/dotpay/notification', apiController.postDotpay);
+
 app.post('/api/showResult', apiController.postShowResult);
 
-app.post('/api/checkBalance/:address', apiController.checkBalance);
 app.get('/api/checkBalance/:address', apiController.checkBalance);
 
-app.get('/api/getTokens', tokenController.getTokens);
-
-// app.get('/api/token/:walletAddress', tokenController.getTokens);
-
-// app.get('/api/tokens', tokenController.getTokens);
+app.get('/api/tokens', tokenController.getTokens);
 
 /**
  * Error Handler.

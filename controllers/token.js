@@ -20,10 +20,7 @@ exports.sendTokensRaw = async (address, value) => {
 
   // get transaction count, later will used as nonce
   const count = await web3.eth.getTransactionCount(ownerAddress);
-  console.log(count);
 
-  // set your private key here, we'll sign the transaction below
-  // Get abi array here https://etherscan.io/address/0x86fa049857e0209aa7d9e616f7eb3b3b78ecfdb0#code
   const abiArray = TokenTokenArtifacts.abi;
   // Here you may get the abicode from a string or a file, here is a string case
 
@@ -57,6 +54,7 @@ exports.sendTokensRaw = async (address, value) => {
 };
 
 exports.getBalance = async (address) => {
+
   const TokenToken = await contract(TokenTokenArtifacts);
   TokenToken.setProvider(provider);
   if (typeof TokenToken.currentProvider.sendAsync !== 'function') {
@@ -81,8 +79,8 @@ exports.getBalance = async (address) => {
 exports.getTokens = (req, res) => {
   token.find({}, (err, tokens) => {
     if (err) {
-      res.send(err);
+      return res.send(err);
     }
-    res.send(JSON.stringify(tokens));
+    return res.send(JSON.stringify(tokens));
   });
 }

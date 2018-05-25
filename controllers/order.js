@@ -1,15 +1,9 @@
 const Order = require('../models/Order');
-// const tokenController = require('./token');
 
-const ServerURL = 'http://206.189.48.168:8081';
+const serverURL = 'http://167.99.141.77:8081';
 
 exports.postOrder = (req, res) => {
-  const address = req.params.walletAddress;
-  const order = new Order({
-    walletAddress: address,
-    status: 'new'
-  });
-  // await tokenController.sendTokensRaw(address, 1);
+  const order = new Order(req.body);
 
   order.save((err) => {
     if (!err) {
@@ -19,8 +13,8 @@ exports.postOrder = (req, res) => {
         type = 2;
       }
       return res.json({
-        href: `https://ssl.dotpay.pl/test_payment/?id=713953&amount=300&currency=PLN&lang=PL&description=${
-          orderID}&type=${type}&URL=${ServerURL}/api/showResult`,
+        href: `https://ssl.dotpay.pl/test_payment/?id=713953&amount=${order.fiatValue}&currency=${order.fiat}&lang=PL&description=${
+          orderID}&type=${type}&URL=${serverURL}/api/showResult`,
         orderID
       });
     }

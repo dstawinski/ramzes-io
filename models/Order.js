@@ -5,15 +5,26 @@ const orderSchema = new mongoose.Schema({
     type: String
   },
   status: {
+    type: String, default: 'new'
+  },
+  fiat: {
     type: String
+  },
+  token: {
+    type: String
+  },
+  fiatValue: {
+    type: Number
+  },
+  tokenValue: {
+    type: Number
   }
 }, {
   timestamps: true
 });
 
-orderSchema.virtual('orderID').get(function () {
-  return this._id;
-});
+orderSchema.virtual('orderID').get(() => this._id);
+
 
 const Order = mongoose.model('Order', orderSchema);
 

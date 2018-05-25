@@ -2,15 +2,14 @@ const order = require('../models/Order');
 const paypal = require('paypal-rest-sdk');
 const tokenController = require('./token');
 
-const vueURL = 'http://206.189.48.168:8081';
+const vueURL = 'http://167.99.141.77:8081';
 
 /**
- * POST /api/dotpay
+ * POST /api/dotpay/notification
  * receive dotpay payment acceptance
  */
 exports.postDotpay = async (req, res) => {
-  console.log(req.body);
-  let address;
+  // console.log(req.body);
   const status = req.body.operation_status;
   order.findOne({
     _id: req.body.description
@@ -20,13 +19,11 @@ exports.postDotpay = async (req, res) => {
       return res.send('FAIL');
     }
     order.status = status;
-    address = order.walletAddress;
     order.save(async (err) => {
       if (err) return res.send(err);
-      console.log(`Address: ${address}`);
-      if (address && status === 'completed') {
+      if (order.walletAddress && status === 'completed') {
         try {
-          await tokenController.sendTokensRaw(address, 1);
+          await tokenController.sendTokensRaw(order.walletAddress, order.tokenValue);
           res.send('OK');
         } catch (e) {
           res.send(e);

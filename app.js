@@ -112,7 +112,7 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
  * Primary app routes.
  */
 
-app.post('/api/order/new/:walletAddress', orderController.postOrder);
+app.post('/api/order/new', orderController.postOrder);
 
 app.get('/api/order/:orderID', orderController.getOrder);
 

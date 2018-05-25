@@ -69,10 +69,17 @@ export default {
       this.fiatValue = this.tokenValue / this.token.value;
     },
     async postNewOrder() {
-      const urlOrder = `http://167.99.141.77:8081/api/order/new/${this.walletAddress}`;
+      const urlOrder = 'http://167.99.141.77:8081/api/order/new/';
+      const newOrder = {
+        fiat: this.token.currency,
+        token: this.token.token,
+        fiatValue: this.fiatValue,
+        tokenValue: this.tokenValue,
+        walletAddress: this.walletAddress,
+      };
 
-      const response = await axios.post(urlOrder);
-      console.log(response);
+
+      const response = await axios.post(urlOrder, newOrder);
       window.location.href = response.data.href;
     },
   },

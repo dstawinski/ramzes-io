@@ -23,7 +23,7 @@ const orderSchema = new mongoose.Schema({
   timestamps: true
 });
 
-orderSchema.virtual('orderID').get(() => this._id);
+orderSchema.virtual('orderID').get(function () { return this._id; });
 
 
 const Order = mongoose.model('Order', orderSchema);
